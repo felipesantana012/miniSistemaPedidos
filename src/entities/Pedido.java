@@ -11,15 +11,18 @@ public class Pedido {
 	private Date moment;
 	private StatusPedido status;
 	private List<ItemPedido> itemPedidos = new ArrayList<>();
+	private Cliente cliente;
 	
 	public Pedido() {
 		
 	}
 
-	public Pedido(Date moment, StatusPedido status) {
+	public Pedido(Date moment, StatusPedido status, Cliente cliente) {
 		this.moment = moment;
 		this.status = status;
+		this.cliente = cliente;
 	}
+
 
 	public Date getMoment() {
 		return moment;
@@ -35,6 +38,14 @@ public class Pedido {
 
 	public void setStatus(StatusPedido status) {
 		this.status = status;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public List<ItemPedido> getItemPedido() {

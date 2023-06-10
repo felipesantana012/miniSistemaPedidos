@@ -6,7 +6,7 @@ public class Cliente {
 
 	private String nome;
 	private String email;
-	private Date birthDate;
+	private Date dataNasc;
 	
 	public Cliente() {
 		
