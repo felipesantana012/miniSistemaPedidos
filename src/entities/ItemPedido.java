@@ -4,7 +4,6 @@ public class ItemPedido {
 	
 	private Integer quantidade;
 	private Double preco;
-	
 	private Produto produto;
 	
 	public ItemPedido() {
@@ -42,6 +41,17 @@ public class ItemPedido {
 		this.produto = produto;
 	}
 
+	
+	public double subTotal() {
+		return preco*quantidade;
+		
+	}
+
+	@Override
+	public String toString() {
+		return getProduto().getNome() + 
+				", $" + String.format("%.2f", preco)  + ", quantidade : " + quantidade + ", subTotal : $" + String.format("%.2f", subTotal()) ;
+	}
 	
 	
 	

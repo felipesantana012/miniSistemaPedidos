@@ -1,5 +1,6 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,9 +9,11 @@ import entities.enums.StatusPedido;
 
 public class Pedido {
 	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	private Date moment;
 	private StatusPedido status;
-	private List<ItemPedido> itemPedidos = new ArrayList<>();
+	private List<ItemPedido> items = new ArrayList<ItemPedido>();
 	private Cliente cliente;
 	
 	public Pedido() {
@@ -48,27 +51,48 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public List<ItemPedido> getItemPedido() {
-		return itemPedidos;
-	}
-	
-	public void addItemPedido(ItemPedido itemPedido) {
-		itemPedidos.add(itemPedido);
+	public void addItem(ItemPedido item) {
+		items.add(item);
 		
 	}
 	
-	public void removeItemPedido(ItemPedido itemPedido) {
-		itemPedidos.remove(itemPedido);
+	public void removeItem(ItemPedido item) {
+		items.remove(item);
 		
 	}
 	
 	public Double total() {
-		return null;
+	
+		double sum =0;
+		for(ItemPedido it : items) {
+			sum+= it.subTotal();
+		}
+		
+		return sum;
 		
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Momento do pedido : ");
+		sb.append(sdf.format(moment) + "\n");
+		sb.append("Status Pedido : ");
+		sb.append(status + "\n");
+		sb.append("Cliente: ");
+		sb.append(cliente+"\n");
+		sb.append("Itens Pedido : \n");
+		for(ItemPedido item : items) {
+			sb.append(item + "\n");
+		}
+		sb.append("Total preco : $");
+		sb.append(String.format("%.2f", total()));
+		return sb.toString();
+		
+		
+	}
 	
 
 }
